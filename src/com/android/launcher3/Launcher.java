@@ -2558,6 +2558,7 @@ public class Launcher extends Activity
         if (isAllAppsVisible()) {
             showWorkspace(true);
         } else {
+            v.setVisibility(View.INVISIBLE);
             showAllApps(true, AppsCustomizePagedView.ContentType.Applications, false);
         }
     }
@@ -3256,7 +3257,8 @@ public class Launcher extends Activity
             if (isWidgetTray) {
                 revealView.setBackground(res.getDrawable(R.drawable.quantum_panel_dark));
             } else {
-                revealView.setBackground(res.getDrawable(R.drawable.quantum_panel));
+                // Dustin - animation for opening allapps needs no bg
+                revealView.setBackground(res.getDrawable(R.drawable.quantum_panel_dark_black));
             }
 
             // Hide the real page background, and swap in the fake one
@@ -3287,11 +3289,11 @@ public class Launcher extends Activity
                 yDrift = 2 * height / 3;
                 xDrift = 0;
             }
-            final float initAlpha = alpha;
+            final float initAlpha = 0; //alpha;
 
             revealView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             layerViews.add(revealView);
-            PropertyValuesHolder panelAlpha = PropertyValuesHolder.ofFloat("alpha", initAlpha, 1f);
+            PropertyValuesHolder panelAlpha = PropertyValuesHolder.ofFloat("alpha", initAlpha, 0f);
             PropertyValuesHolder panelDriftY =
                     PropertyValuesHolder.ofFloat("translationY", yDrift, 0);
             PropertyValuesHolder panelDriftX =
@@ -3332,7 +3334,7 @@ public class Launcher extends Activity
             indicatorsAlpha.setDuration(revealDuration);
             mStateAnimation.play(indicatorsAlpha);
 
-            if (material) {
+            if (material) { 
                 final View allApps = getAllAppsButton();
                 int allAppsButtonSize = LauncherAppState.getInstance().
                         getDynamicGrid().getDeviceProfile().allAppsButtonVisualSize;
@@ -3590,7 +3592,7 @@ public class Launcher extends Activity
                 View pageIndicators = fromView.findViewById(R.id.apps_customize_page_indicator);
                 pageIndicators.setAlpha(1f);
                 ObjectAnimator indicatorsAlpha =
-                        LauncherAnimUtils.ofFloat(pageIndicators, "alpha", 0f);
+                LauncherAnimUtils.ofFloat(pageIndicators, "alpha", 0f);
                 indicatorsAlpha.setDuration(revealDuration);
                 indicatorsAlpha.setInterpolator(new DecelerateInterpolator(1.5f));
                 mStateAnimation.play(indicatorsAlpha);

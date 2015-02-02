@@ -923,13 +923,14 @@ public class AppsCustomizePagedView extends PagedViewWithDraggableItems implemen
         int widthSpec = MeasureSpec.makeMeasureSpec(mContentWidth, MeasureSpec.AT_MOST);
         int heightSpec = MeasureSpec.makeMeasureSpec(mContentHeight, MeasureSpec.AT_MOST);
         layout.measure(widthSpec, heightSpec);
-
-        Drawable bg = getContext().getResources().getDrawable(R.drawable.quantum_panel);
+        // dustin - disable background on app drawer
+        /*
+        Drawable bg = getContext().getResources().getDrawable(R.drawable.quantum_panel_dark_black);
         if (bg != null) {
             bg.setAlpha(mPageBackgroundsVisible ? 255: 0);
             layout.setBackground(bg);
         }
-
+        */
         setVisibilityOnChildren(layout, View.VISIBLE);
     }
 

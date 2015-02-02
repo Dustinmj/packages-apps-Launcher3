@@ -31,12 +31,14 @@
             android:layout_weight="1"
             android:clipChildren="false">
             <FrameLayout
+                android:background="@android:color/transparent"
                 android:id="@+id/fake_page_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipChildren="false"
                 android:clipToPadding="false">
                 <FrameLayout
+                    android:background="@android:color/transparent"
                     android:id="@+id/fake_page"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -44,6 +46,7 @@
                     android:clipToPadding="false" />
             </FrameLayout>
             <com.android.launcher3.AppsCustomizePagedView
+                android:background="@android:color/transparent" 
                 android:id="@+id/apps_customize_pane_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
